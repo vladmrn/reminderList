@@ -50,6 +50,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<script>
+		var numarTask = 1;
 		function adaugareTask() {
 			var urgent = $("#urgent").is(':checked');
 			var task = $('#task').val();
@@ -59,19 +60,26 @@
 			}
 			$('#alerta').addClass('d-none');
 			$('#lista').append(`
-    <div class="card">
-        <div class="card-body ${urgent ? 'bg-danger' : 'bg-success'}">
+    <div class="card" id="` + numarTask + `">
+        <div class="card-body ${urgent ? 'bg-danger' : 'bg-success'}"> 
             <div class="card-body">
-                <h5>${task}</h5>
+                <h5>` + task + `</h5>
             </div>
         </div>
         <div class="card-footer text-muted">
-            <a href="#" class="btn btn-danger"><i class="las la-trash"></i></a>
+            <a href="#" class="btn btn-danger" onclick="return stergereTask(` + numarTask + `);"><i class="las la-trash"></i></a>
         </div>
     </div>
     `);
 			$('#task').val(undefined);
 			$('#urgent').prop('checked', false);
+			++numarTask;
+			return false;
+		}
+
+		function stergereTask(idTask) {
+			alert("frfrf");
+			$('#' + idTask).remove;
 			return false;
 		}
 	</script>
