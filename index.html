@@ -35,7 +35,7 @@
 						<label class="form-check-label">Urgent?</label>
 					</div>
 					<div class="alert alert-danger d-none" role="alert" id="alerta">
-						Evenimentul trebuie sa aiba minim 3 caracatere.
+						Task-ul tau nu are niciun caracter.
 					</div>
 					<button type="button" class="btn btn-primary" onclick="return adaugareTask();">Adauga</button>
 				</form>
@@ -54,14 +54,14 @@
 		function adaugareTask() {
 			var urgent = $("#urgent").is(':checked');
 			var task = $('#task').val();
-			if (task.length < 3) {
+			if (task.length < 1) {
 				$('#alerta').removeClass('d-none');
 				return false;
 			}
 			$('#alerta').addClass('d-none');
 			$('#lista').append(`
     <div class="card" id="` + numarTask + `">
-        <div class="card-body ${urgent ? 'bg-danger' : 'bg-success'}"> 
+        <div class="card-body ${urgent ? 'alert-danger' : 'alert-success'}"> 
             <div class="card-body">
                 <h5>` + task + `</h5>
             </div>
@@ -78,8 +78,7 @@
 		}
 
 		function stergereTask(idTask) {
-			alert("frfrf");
-			$('#' + idTask).remove;
+			$('#' + idTask).remove();
 			return false;
 		}
 	</script>
